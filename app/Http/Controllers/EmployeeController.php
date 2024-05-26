@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; // Import Validator
 use Illuminate\Support\Facades\DB; // memanggil Facade DB
+use App\Models\Employee;    // memanggil model employee
+use App\Models\Position; // memanggil model position
 
 class EmployeeController extends Controller
 {
@@ -20,10 +22,14 @@ class EmployeeController extends Controller
         // ');
 
         // QUERY BUILDER
-        $employees = DB::table('employees')
-        ->select('*', 'employees.id as employee_id', 'positions.name as position_name')
-        ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
-        ->get();
+        // $employees = DB::table('employees')
+        //     ->select('*', 'employees.id as employee_id', 'positions.name as position_name')
+        //     ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
+        //     ->get();
+
+        // ELOQUENT
+        $employees = Employee::all();
+
 
         return view('employee.index', [
             'pageTitle' => $pageTitle,
@@ -38,7 +44,10 @@ class EmployeeController extends Controller
         // $positions = DB::select('select * from positions');
 
         // QUERY BUILDER
-        $positions = DB::table('positions')->get();
+        // $positions = DB::table('positions')->get();
+
+        // ELOQUENT
+        $positions = Position::all();
 
         return view('employee.create', compact('pageTitle', 'positions'));
     }
@@ -56,11 +65,14 @@ class EmployeeController extends Controller
         // ', [$id]))->first();
 
         // QUERY BUILDER
-        $employee = DB::table('employees')
-            ->select('*', 'employees.id as employee_id', 'positions.name as position_name')
-            ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
-            ->where('employees.id', $id)
-            ->first();
+        // $employee = DB::table('employees')
+        //     ->select('*', 'employees.id as employee_id', 'positions.name as position_name')
+        //     ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
+        //     ->where('employees.id', $id)
+        //     ->first();
+
+        // ELOQUENT
+        $employee = Employee::find($id);
 
         return view('employee.show', compact('pageTitle', 'employee'));
     }
@@ -68,9 +80,12 @@ class EmployeeController extends Controller
     public function destroy(string $id)
     {
         // QUERY BUILDER
-        DB::table('employees')
-            ->where('id', $id)
-            ->delete();
+        // DB::table('employees')
+        //     ->where('id', $id)
+        //     ->delete();
+
+        // ELOQUENT
+        Employee::find($id)->delete();
 
         return redirect()->route('employees.index');
     }
@@ -94,7 +109,14 @@ class EmployeeController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Proses penyimpanan data ke dalam database bisa dilakukan di sini
+        // ELOQUENT
+        $employee = New Employee;
+        $employee->firstname = $request->firstName;
+        $employee->lastname = $request->lastName;
+        $employee->email = $request->email;
+        $employee->age = $request->age;
+        $employee->position_id = $request->position;
+        $employee->save();
 
         // Redirect ke halaman employee list
         return redirect()->route('employees.index')->with('success', 'Employee data has been saved successfully.');
@@ -105,11 +127,15 @@ class EmployeeController extends Controller
     {
         $pageTitle = 'Edit Employee';
 
-        $employee = DB::table('employees')
-            ->where('id', $id)
-            ->first();
+        // $employee = DB::table('employees')
+        //     ->where('id', $id)
+        //     ->first();
 
-        $positions = DB::table('positions')->get();
+        // $positions = DB::table('positions')->get();
+
+        // ELOQUENT
+        $positions = Position::all();
+        $employee = Employee::find($id);
 
         return view('employee.edit', compact('pageTitle', 'employee', 'positions'));
     }
@@ -134,15 +160,25 @@ class EmployeeController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        DB::table('employees')
-            ->where('id', $id)
-            ->update([
-                'firstname' => $request->firstName,
-                'lastname' => $request->lastName,
-                'email' => $request->email,
-                'age' => $request->age,
-                'position_id' => $request->position,
-            ]);
+        // DB::table('employees')
+        //     ->where('id', $id)
+        //     ->update([
+        //         'firstname' => $request->firstName,
+        //         'lastname' => $request->lastName,
+        //         'email' => $request->email,
+        //         'age' => $request->age,
+        //         'position_id' => $request->position,
+        //     ]);
+
+        // ELOQUENT
+        $employee = Employee::find($id);
+        $employee->firstname = $request->firstName;
+        $employee->lastname = $request->lastName;
+        $employee->email = $request->email;
+        $employee->age = $request->age;
+        $employee->position_id = $request->position;
+        $employee->save();
+
 
         return redirect()->route('employees.index');
     }
