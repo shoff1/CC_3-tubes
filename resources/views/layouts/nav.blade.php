@@ -5,9 +5,9 @@
 <nav class="navbar navbar-expand-md bg-warning">
     <div class="container">
         <a href="{{ route('home') }}" class="navbar-brand mb-0 h1">
-            <img src="https://www.kindpng.com/picc/m/677-6776768_data-clipart-computer-system-analyst-big-data-icon.png"
+            <img src="https://d29fhpw069ctt2.cloudfront.net/icon/image/74170/preview.svg"
                 alt="Logo" class="me-2" style="width: 40px; height: 40px;">
-            Master Barang
+            Do-ty List
         </a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -21,9 +21,9 @@
                     </a>
                 </li>
                 <li class="nav-item col-2 col-md-auto">
-                    <a href="{{ route('barangs.index') }}"
+                    <a href="{{ route('tasks.index') }}"
                         class="nav-link @if ($currentRouteName == 'barang.index') active @endif">
-                        Kelola Barang
+                        Your-Task
                     </a>
                 </li>
             </ul>

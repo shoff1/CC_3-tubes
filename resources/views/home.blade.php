@@ -13,7 +13,6 @@
          @include('layouts/default')
     @endsection
 
-
     @vite('resources/js/app.js')
 </body>
 </html>

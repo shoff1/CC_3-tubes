@@ -7,7 +7,6 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Global Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -130,8 +129,8 @@
 <body>
     <section id="home" class="hero">
         <div class="container">
-            <h2 style="color: white;">Welcome to Master Barang</h2>
-            <p>This is the home page of Master Barang's website.</p>
+            <h2 style="color: white;">Welcome to Do-ty List</h2>
+            <p>This is the home page of Do-ty List's website.</p>
             <a href="#mahasiswa" class="btn">Learn More</a>
         </div>
     </section>
@@ -205,5 +204,4 @@
         </div>
     </footer>
 </body>
-
 </html>
