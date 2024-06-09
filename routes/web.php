@@ -4,9 +4,12 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 // Rute untuk halaman home
 Route::get('home', [HomeController::class, 'index'])->name('home');
@@ -22,11 +25,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 // Route::resource('barangs', BarangController::class);
 // Route::resource('satuans', SatuanController::class);
 
+// routes/web.php
 
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
 Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
