@@ -15,5 +15,6 @@ class Task extends Model
         'deadline',
         'attachment',
         '_token',
+        'status',
     ];
 }

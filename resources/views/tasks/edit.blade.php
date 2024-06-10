@@ -32,9 +32,17 @@
                                 <p>Current Attachment: <a href="{{ Storage::url($task->attachment) }}">Download</a></p>
                             @endif
                         </div>
-                        <div class="form-group form-check">
+                        {{-- <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="completed" name="completed" {{ $task->completed ? 'checked' : '' }}>
                             <label class="form-check-label" for="completed">Completed</label>
+                        </div> --}}
+                        {{-- coba edit --}}
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select class="form-control" id="status" name="status">
+                                <option value="onprogress" {{ $task->status == 'onprogress' ? 'selected' : '' }}>On Progress</option>
+                                <option value="completed" {{ $task->status == 'completed' ? 'selected' : '' }}>Completed</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary btn-lg">Update Task</button>
                         <a href="{{ route('tasks.index') }}" class="btn btn-secondary btn-lg">Cancel</a>
