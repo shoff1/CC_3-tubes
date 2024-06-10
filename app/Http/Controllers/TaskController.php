@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TaskController extends Controller
 {
     public function index()
     {
         $tasks = Task::all();
+
+        confirmDelete();
+
         return view('tasks.index', compact('tasks'));
     }
 
@@ -37,6 +41,8 @@ class TaskController extends Controller
 
         Task::create($data);
 
+        Alert::success('Task Added Successfully', 'Good Luck!');
+
         return redirect()->route('tasks.index');
     }
 
@@ -57,6 +63,7 @@ class TaskController extends Controller
             'description' => 'nullable',
             'deadline' => 'nullable|date',
             'attachment' => 'nullable|file|mimes:jpg,png,pdf|max:2048',
+            'status' => 'required|in:onprogress,completed', // Validasi status
         ]);
 
         $data = $request->except('_token');
@@ -67,8 +74,11 @@ class TaskController extends Controller
             }
             $data['attachment'] = $request->file('attachment')->store('attachments');
         }
+        $data['status'] = $request->input('status');
 
         $task->update($data);
+
+        Alert::success('Changed Successfully', 'Your task have been updated.');
 
         return redirect()->route('tasks.index');
     }
@@ -80,6 +90,7 @@ class TaskController extends Controller
             Storage::delete($task->attachment);
         }
         $task->delete();
+        Alert::success('Deleted Successfully', 'Task Deleted Successfully.');
         return redirect()->route('tasks.index');
     }
 

@@ -26,7 +26,7 @@
             <hr>
             <!-- Tabel daftar tugas -->
             <div class="table-responsive border p-3 rounded-3">
-                <table class="table table-bordered table-hover table-striped mb-0" style="border-color: black;">
+                <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="taskTable" style="border-color: black;">
                     <thead>
                         <tr style="text-align: center;">
                             <th style="width: 3%;">No</th>
@@ -34,7 +34,7 @@
                             <th style="width: 30%;">Deskripsi</th>
                             <th style="width: 10%;">Tugas Dibuat</th>
                             <th style="width: 10%;">Deadline</th>
-                            <th style="width: 6%;">Completed</th>
+                            <th style="width: 6%;">Status</th>
                             <th style="width: 8%;">Attachment</th>
                             <th style="width: 20%;">Action</th>
                         </tr>
@@ -47,7 +47,7 @@
                                 <td>{{ $task->description }}</td>
                                 <td>{{ $task->created_at }}</td>
                                 <td>{{ $task->deadline }}</td>
-                                <td>{{ $task->completed ? 'Sudah' : 'Belum' }}</td>
+                                <td>{{ $task->status }}</td>
                                 <td>
                                     @if ($task->attachment)
                                         <a href="{{ Storage::url($task->attachment) }}" class="btn btn-primary">Download</a>
@@ -58,20 +58,40 @@
                                 <td style="text-align: center;">
                                     <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-info">Show</a>
                                     <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline;" id="delete-form-{{ $task->id }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $task->id }}, '{{ $task->name }}')">Delete</button>
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
+                        {{-- sweetalert js klik --}}
+                        <script>
+                            function confirmDelete(taskId) {
+                                Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: "You won't be able to revert this!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Yes, delete it!'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        document.getElementById('delete-form-' + taskId).submit();
+                                    }
+                                });
+                            }
+                        </script>
                     </tbody>
                 </table>
             </div>
         </div>
     @endsection
+
     @vite('resources/js/app.js')
+    @include('sweetalert::alert')
 </body>
 
 </html>
