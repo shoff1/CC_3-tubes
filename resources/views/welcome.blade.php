@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Barank</title>
+    <title>Do-ty List</title>
     @vite('resources/sass/app.scss')
     <style>
         body {
@@ -38,6 +38,7 @@
         }
 
         .img-thumbnail {
+            margin-top: 20px;
             border: none;
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -63,7 +64,15 @@
             }
         }
 
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
         .btn {
+            margin: 0 10px;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -83,15 +92,13 @@
 
 <body>
     <div class="container text-center my-5">
-        <h1 class="mb-4">Welcome to Master Barang !</h1>
-        <img class="img-thumbnail" src="{{ Vite::asset('resources/images/pandaa.png') }}" alt="image">
-        <h3 class="text-center">
-
-            <div class="col-md-2 offset-md-5 mt-4">
-                <div class="d-grid gap-2">
-                    <a class="btn btn-dark" href="{{ route('home') }}">Home</a>
-                </div>
-            </div>
+        <h1 class="mb-2">Welcome to Do-ty List !</h1>
+        <p>Don't forget to list your duty!<p>
+        <img class="img-thumbnail" src="{{ Vite::asset('resources/images/panda.png') }}" alt="image">
+        <div class="btn-container">
+            <a class="btn btn-dark" href="{{ route('login') }}">Login</a>
+            <a class="btn btn-dark" href="{{ route('register') }}">Register</a>
+        </div>
     </div>
     @vite('resources/js/app.js')
 </body>
