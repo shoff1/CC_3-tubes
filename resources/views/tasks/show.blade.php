@@ -14,7 +14,7 @@
             {{-- <p>Status: {{ $task->completed ? 'sudah' : 'belum' }}</p> --}}
             <p>Status: {{ $task->status }}</p>
             @if ($task->attachment)
-            <a href="{{ Storage::url($task->attachment) }}" class="btn btn-success">Download Attachment</a>
+            <a href="{{ route('tasks.download', $task->id) }}" class="btn btn-success">Download Attachment</a>
             @endif
             <a href="{{ route('tasks.index') }}" class="btn btn-primary">Back</a>
         </div>
