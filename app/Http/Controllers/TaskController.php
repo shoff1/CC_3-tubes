@@ -100,4 +100,29 @@ class TaskController extends Controller
         $task->save();
         return redirect()->route('tasks.index');
     }
+
+    // tambah fungsi
+    public function downloadFile($taskId)
+    {
+        $task = Task::findOrFail($taskId);
+
+        if ($task->attachment) {
+            $filePath = $task->attachment;
+
+            // Debugging
+            if (Storage::exists($filePath)) {
+                return Storage::download($filePath);
+            } else {
+                return response()->json([
+                    'error' => 'File not found in storage',
+                    'file_path' => $filePath,
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'error' => 'No attachment found for this task',
+                'task_id' => $taskId,
+            ], 404);
+        }
+    }
 }

@@ -50,9 +50,9 @@
                                 <td>{{ $task->status }}</td>
                                 <td>
                                     @if ($task->attachment)
-                                        <a href="{{ Storage::url($task->attachment) }}" class="btn btn-primary">Download</a>
+                                        <a href="{{ route('tasks.download', $task->id) }}" class="btn btn-success">Download</a>
                                     @else
-                                        -
+                                        No Attachment
                                     @endif
                                 </td>
                                 <td style="text-align: center;">
