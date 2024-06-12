@@ -81,7 +81,7 @@
 
         /* About Section */
         .about,
-        .mahasiswa,
+        .info,
         .contact {
             padding: 50px 0;
             text-align: center;
@@ -93,7 +93,7 @@
             color: #333;
         }
 
-        /* Mahasiswa Section */
+        /* Fitur Section */
         .pict {
             width: 200px;
             height: 200px;
@@ -102,15 +102,15 @@
             margin-right: 20px;
         }
 
-        .mahasiswa .mhs {
+        .info .fitur {
             margin-bottom: 20px;
         }
 
-        .mahasiswa {
+        .info {
             padding: 30px;
         }
 
-        .mhs-box {
+        .fitur-box {
             background-color: #ffc107;
             padding: 20px;
             border-radius: 10px;
@@ -151,25 +151,29 @@
                 hari!</p>
         </div>
     </section>
-    <section id="mahasiswa" class="mahasiswa">
-        <div class="container mhs-box">
+    <section id="info" class="info">
+        <div class="container fitur-box">
             <img src="{{ Vite::asset('resources/images/pandaa.png') }}" alt="Profile Picture" class="pict">
-            <h2>Biodata Mahasiswa</h2>
-            <div class="mhs">
-                <h3>FITUR</h3>
-                <p style="font-size: 20px">Lorem Ipsum</p>
+            <h2 class="mb-5 mt-3">Manfaatkan Fitur ini !</h2>
+            <div class="fitur">
+                <h3><b>Tambah Tugas  ✔</b></h3>
+                <p style="font-size: 20px">Kamu bisa memanfaatkan fitur <b>Tambah Tugas</b> untuk mencatat list tugas-tugas mu, loh!</p>
             </div>
-            <div class="mhs">
-                <h3>FITUR</h3>
-                <p style="font-size: 20px">Lorem Ipsum</p>
+            <div class="fitur">
+                <h3><b>Edit Tugas  ✔</b></h3>
+                <p style="font-size: 20px">Kamu bisa memanfaatkan fitur <b>Edit Tugas</b> untuk mengedit list tugas-tugas mu, dan ubah status tugaas mu, loh!</p>
             </div>
-            <div class="mhs">
-                <h3>FITUR</h3>
-                <p style="font-size: 20px">Lorem Ipsum</p>
+            <div class="fitur">
+                <h3><b>Lihat Tugas  ✔</b></h3>
+                <p style="font-size: 20px">Kamu bisa memanfaatkan fitur <b>Lihat Tugas</b> untuk melihat detail dari tugas mu, loh!</p>
             </div>
-            <div class="mhs">
-                <h3>FITUR</h3>
-                <p style="font-size: 20px">Lorem Ipsum</p>
+            <div class="fitur">
+                <h3><b>Export to Excel</b></h3>
+                <p style="font-size: 20px">Kamu bisa memanfaatkan fitur <b>Export to Excel</b> kalau kamu ingin export semua tugas mu ke bentuk Excel, loh!</p>
+            </div>
+            <div class="fitur">
+                <h3><b>Export to PDF</b></h3>
+                <p style="font-size: 20px">Kamu bisa memanfaatkan fitur <b>Export to PDF</b> kalau kamu ingin export semua tugas mu ke bentuk PDF, loh!</p>
             </div>
         </div>
     </section>

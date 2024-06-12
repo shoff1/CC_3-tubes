@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <title>Do-ty List</title>
     @vite('resources/sass/app.scss')
 </head>
 
@@ -14,16 +14,14 @@
     @section('content')
         <div class="container mt-4">
             <div class="row mb-0">
-                <div class="col-lg-9 col-xl-10">
-                    <h4 class="mb-3 text-center" style="color: black; font-weight: bold;">Do Your Task !</h4>
-                </div>
-                <div class="col-lg-3 col-xl-2">
-                    <div class="d-grid gap-2">
+                <h4 class="mb-3 text-center" style="color: black; font-weight: bold;">Do Your Task !</h4>
+                <div class="col-xl-4">
+                    <div class="d-flex gap-2">
                         <a href="{{ route('tasks.create') }}" class="btn btn-primary btn-danger">Tambah Tugas</a>
                         <a href="{{ route('tasks.export') }}" class="btn btn-success">Export to Excel</a>
                         <a href="{{ route('tasks.export.pdf') }}" class="btn btn-primary">Export to PDF</a>
 
-            
+
                     </div>
                 </div>
             </div>
