@@ -12,23 +12,24 @@
                     <hr>
                     <form action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="name">Task Name:</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="description">Description:</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-4">
                             <label for="deadline">Deadline:</label>
                             <input type="date" class="form-control" id="deadline" name="deadline">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="attachment">Attachment:</label>
                             <input type="file" class="form-control-file" id="attachment" name="attachment">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg">Add Task</button>
+                        <button type="submit" class="btn btn-primary btn-lg mt-4">Add Task</button>
+                        <a href="{{ route('tasks.index') }}" class="btn btn-outline-danger btn-lg mt-4">Cancel</a>
                     </form>
                 </div>
             </div>
