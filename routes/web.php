@@ -28,6 +28,9 @@ Route::get('/login', function () {
 })->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/export-tasks', [TaskController::class, 'export'])->name('tasks.export');
+Route::get('/tasks/export-pdf', [TaskController::class, 'exportPdf'])->name('tasks.export.pdf');
+
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);

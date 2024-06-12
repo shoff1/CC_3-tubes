@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Exports\TasksExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+use \PDF;
 
 class TaskController extends Controller
 {
@@ -125,4 +129,16 @@ class TaskController extends Controller
             ], 404);
         }
     }
+
+    
+    public function export() 
+    {
+        return Excel::download(new TasksExport, 'tasks.xlsx');
+    }
+    public function exportPDF()
+    {
+        return (new TasksExport())->exportPDF();
+    }
+    
+
 }
