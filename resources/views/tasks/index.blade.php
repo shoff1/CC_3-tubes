@@ -9,7 +9,7 @@
     @vite('resources/sass/app.scss')
 </head>
 
-<body style="background-color: wheat;">
+<body>
     @extends('layouts.app')
     @section('content')
         <div class="container mt-4">
@@ -50,9 +50,9 @@
                                 <td>{{ $task->status }}</td>
                                 <td>
                                     @if ($task->attachment)
-                                        <a href="{{ route('tasks.download', $task->id) }}" class="btn btn-success">Download</a>
+                                        <a href="{{ Storage::url($task->attachment) }}" class="btn btn-primary">Download</a>
                                     @else
-                                        No Attachment
+                                        -
                                     @endif
                                 </td>
                                 <td style="text-align: center;">
