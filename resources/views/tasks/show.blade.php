@@ -41,9 +41,12 @@
                         <div class="col-md-12 mb-3">
                             <label for="age" class="form-label">Attachment</label>
                             <br>
-                            @if ($task->attachment)
+                            {{-- @if ($task->attachment)
                                 <a href="{{ Storage::url($task->attachment) }}" class="btn btn-primary">Download
                                     Attachment</a>
+                            @endif --}}
+                            @if ($task->attachment)
+                                <a href="{{ route('tasks.download', $task->id) }}" class="btn btn-primary">Download Attachment</a>
                             @endif
                         </div>
                     </div>

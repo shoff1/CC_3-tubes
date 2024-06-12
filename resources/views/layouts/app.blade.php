@@ -7,7 +7,7 @@
     <title>{{ $pageTitle ?? 'Do-ty List' }}</title>
     @vite('resources/sass/app.scss')
 </head>
-<body style="background-color: wheat;">
+<body>
     @include('layouts.nav')
     <div class="container mt-4">
         @yield('content')
