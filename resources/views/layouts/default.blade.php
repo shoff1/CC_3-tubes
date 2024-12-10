@@ -133,7 +133,7 @@
             <p style="margin-top: 40px">Cape karena lupa tugas terus? Let Do-ty List come to the rescue!</p>
             <p>Do-ty List akan mempermudah kamu untuk mencatat segala tugas mu beserta deadline-nya!</p>
             <p>Let's be productive with Do-ty List!</p>
-            <a href="#mahasiswa" class="btn">Learn More</a>
+            <a href="#info" class="btn">Learn More</a>
         </div>
     </section>
     <section id="about" class="about">
